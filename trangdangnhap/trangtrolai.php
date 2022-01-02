@@ -8,7 +8,7 @@
 </head>
 <body>
  <div class="alert alert-success" role="alert">
- Please enter the correct password for the account you registered by clicking <a href="login.php">Come back</a>
+ Please enter the correct password for the account you registered by clicking <a href="login.php" class="btn btn-info">Come back</a>
  here to come back
 </div>
 </body>

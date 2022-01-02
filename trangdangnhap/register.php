@@ -1,23 +1,26 @@
 <?php
 
-use User as GlobalUser;
+
 
 class User
 {
+    public $id;
     public $Username;
     public $email;
     public $password;
+    
+public function __construct($Username,$email,$password)
+{
+    $this->Username = $Username;
+    $this->email = $email;
+    $this->password = $password;
+    
+}
 
-    // public function seve(){
-
-    // }
 }
 $errors = [];
 $show_alert = (isset($_REQUEST['show_alert'])) ? $_REQUEST['show_alert'] : 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // echo '<pre>';
-    // print_r($_REQUEST);
-    // die();
 
     $Username   = $_REQUEST['Username'];
     $email      = $_REQUEST['email'];
@@ -34,31 +37,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if (count($errors) == 0) {
 
-        $objUser = new User($Username, $email, $password);
-        $objUser->username     = $Username;
+        $objUser = new User($Username,$email,$password);
+        $objUser->Username     = $Username;
         $objUser->email        = $email;
         $objUser->password     = $password;
+        $objUser->id     = time();
+    
 
-        $fileJson = "uuser.json"; // đường dẫn file json
-        $user = $_REQUEST; // bằng cái mảng $_REQUEST
-        $users = file_get_contents($fileJson); // nhận dữ liệu của filejson
-        // echo "<pre>";
-        // print_r($user);
-        // echo "</pre>";
-        // echo "<pre>";
-        //   print_r($users);// nhận dữ liệu của filejson
-        // echo "</pre>";
-        // die();
+        $fileJson = "uuser.json"; 
+        $user = $_REQUEST; 
+        $users = file_get_contents($fileJson);
         if ($users == " ") {
             $users = [];
         } else {
-            $users = json_decode($users, true); // đổi $users sang dạng []
+            $users = json_decode($users, true);
         }
 
-        $users[] = $user; // push $user vào mảng $users 
-        $data = json_encode($users); // đổi $users sang dạng json
-        file_put_contents($fileJson, $data); //file_put_contents(url,$data)url là đường link ;$data là mảng ;
-        // push vào filejson một cái mảng data
+        $users[] = $objUser;
+        $data = json_encode($users);
+        file_put_contents($fileJson, $data); 
         header("Location: register.php?show alert=1");
     }
 }
@@ -81,14 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label>Username</label>
                     <input type="text" class="form-control" name="Username" aria-describedby="emailHelp" placeholder="Username"><br>
                     <small class="form-text text-danger">
-                        <?= (isset($errors['username'])) ? $errors['username'] : ""; ?>
+                        <?= (isset($errors['username'])) ? $errors['username'] : " " ; ?>
                     </small>
 
                     <label for="exampleInputEmail1">Email</label>
 
                     <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email"><br>
                     <small class="form-text text-danger">
-                        <?= (isset($errors['email'])) ? $errors['email'] : ""; ?>
+                        <?= (isset($errors['email'])) ? $errors['email'] : " "; ?>
                     </small>
                 </div>
                 <div class="form-group">

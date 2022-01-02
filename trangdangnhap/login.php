@@ -7,44 +7,19 @@ if ($json_users) {
   $users = [];
 }
 $errors = [];
-// echo "<pre>";
-// print_r($users);
-// die();
 $errors = [];
 $alert = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  /*
-        Array
-      (
-          [email] => add@gmail.com
-          [password] => 12345
-      ) 
-   */
   $email = $_REQUEST['email'];
   $password = $_REQUEST['password'];
-
-  // if (!$username ||  !$email ) {
-  //   echo $username = "vui lòng bạn nhập Username";
-  //   echo $email    = "vui lòng nhập email";
-  // } else {
-  //   echo "Đăng nhập thành công !";
-  // }
 
   $can_do = false;
   if (count($errors) === 0) {
     foreach ($users as $user) {
-      // echo $user->email. ' _ ' . $email. '<br>';
-      // echo $user->password. ' _ ' . $password. '<br>';
-      // echo '<hr>';
       if ($user->email == $email || $user->password == $password) {
-        //xu ly đăng nhập
         $_SESSION['user'] = $user;
         $can_do = true;
-        // echo '<pre>';
-        // print_r($_SESSION['user']);
-        // echo '</pre>';
-
         header("Location: user.php");
       } else {
         header("Location: trangtrolai.php");
@@ -52,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   }
 }
-
 ?>
 <div class="container">
   <div class="row">
@@ -67,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="form-group">
           <label>Email</label>
           <input type="emali" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+
           <small class="form-text text-gender"></small>
         </div>
         <div class="form-group">
@@ -82,23 +57,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       </body>
-      
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
-<style>
-    form {
-        width: 100%;
-        border: 2px solid rgb(153, 168, 153);
-        padding: 20px;
-        margin: 0 auto;
-        font-weight: 100%;
-    }
-    form label {
-        width: 50px;
-        padding: 13px;
-    }
-</style>
+
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      </head>
+      <style>
+        form {
+          width: 100%;
+          border: 2px solid rgb(153, 168, 153);
+          padding: 20px;
+          margin: 0 auto;
+          font-weight: 100%;
+        }
+
+        form label {
+          width: 50px;
+          padding: 13px;
+        }
+      </style>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
