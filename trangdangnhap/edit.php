@@ -29,14 +29,7 @@ echo "<pre>";
 print_r($foundId);
 echo "</pre>";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    /* 
-            Array
-         (
-             [username] => admin
-             [email] => admin@gmail.com
-             [password] => 123456
-         )
-    */
+
     $Username  =  $_REQUEST['Username'];
     $email     =  $_REQUEST['email'];
     $password  =  $_REQUEST['password'];
@@ -62,9 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $users[$key]->Username      = $data["Username"];
                 break;
             }
-        } 
-        $_SESSION['alert'] = "Cập nhật thành công ";
+        }
+        $_SESSION['alert'] = "Cập nhật thành công tài khoản: $user->Username  " ;
         $userString = json_encode($users);
+        $_SESSION ['user'] = $foundId;
         file_put_contents("uuser.json", $userString);
         header("location: user.php");
     }

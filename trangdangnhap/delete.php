@@ -18,11 +18,8 @@ foreach ($users as $key => $user) {
         break;
     }
 }
-$_SESSION['alert'] = " Xóa thành công ";
+$_SESSION['alert'] = " Xóa thành công ID: $user->id. <br /> Tên: $user->Username.<br /> Email: $user->email ";
 
-echo "<pre>";
-print_r($users);
-echo "</pre>";
 $users = array_values($users);
 $userString = json_encode($users);
 file_put_contents("uuser.json", $userString);

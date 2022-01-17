@@ -11,6 +11,9 @@ $user = (isset($_SESSION['user'])) ? $_SESSION['user'] : ' ';
 
 $alert = (isset($_SESSION['alert']) && !empty($_SESSION['alert'])) ? $_SESSION['alert'] : "";
 ?>
+<audio controls autoplay style="width: 0%">
+  <source src="y2mate.com - Lyric HD Bài Ca Tuổi Trẻ  JGKiD KraziNoyze Emcee L Da LAB Vũ Bùi Thu Thủy Linh Cáo Mel G.mp3" type="">
+</audio>
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
@@ -20,8 +23,9 @@ $alert = (isset($_SESSION['alert']) && !empty($_SESSION['alert'])) ? $_SESSION['
           <?php echo  $user = (empty($user)) ? " " : " Welcome account , " . $user->Username; ?>
         </div>
       <?php endif; ?>
+
       <?php if ($alert) : ?>
-        <div class=" alert-success" role="alert">
+        <div class="btn btn-danger" role="alert">
           <?php echo (empty($alert)) ? " " :  $alert; ?>
         </div>
       <?php endif; ?>
@@ -29,15 +33,16 @@ $alert = (isset($_SESSION['alert']) && !empty($_SESSION['alert'])) ? $_SESSION['
     <div class="row">
       <div class="col-lg-12">
         <table class="table">
-  
+
           <thead>
             <tr>
-              <th scope="col">STT</th>
+              <th scope="col"><b>STT</b></th>
               <th scope="col">Username</th>
               <th scope="col">Email</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
+
           <tbody>
 
             <?php foreach ($users as $key => $user) :
